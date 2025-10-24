@@ -16,8 +16,8 @@ mail = Mail(app)
 
 # ------------------ Routes ------------------
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
+@app.route('/send_message', methods=['GET', 'POST'])
+def send_message():
     if request.method == 'POST':
         name = request.form.get('name')
         email = request.form.get('email')
@@ -44,9 +44,6 @@ def index():
             print(f"Error sending email: {e}")
             flash("Failed to send message. Try again later.", "error")
 
-        return redirect(url_for('index'))
-
-    return render_template('index.html')
 
 
 @app.route('/about')

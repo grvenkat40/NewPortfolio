@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
-    <link rel="icon" type="image/png" href="{{ url_for('static',filename='images/venkat_title.png') }}">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assert/images/venkat_title.png">
     <title>Venkat | Portfolio</title>
 </head>
 <body>
@@ -30,7 +30,7 @@
             <div class="headshot">
                 <picture>
                     <!-- <source srcset="images/webp/headshot.webp" type="image/webp"> -->
-                    <img src="{{ url_for('static',filename='images/FormalVenkat.jpg') }}" alt="headshot" class="hero-img">
+                    <img src="assert/images/FormalVenkat.jpg" alt="headshot" class="hero-img">
                 </picture>
             </div>
             <h1 class="hey">HEY, <span id="typed-text"></span></h1>
@@ -39,13 +39,13 @@
             <p>I love transforming data into meaningful solutions.</p><br>
             <div class="footer-right">
                 <div class="social-icons">
-                <a href="http://github.com/grvenkat40" target="_blank"><img src="{{ url_for('static',filename='images/github.png') }}" alt="GitHub"></a>
-                <a href="https://www.linkedin.com/in/venkatgr" target="_blank"><img src="{{ url_for('static',filename='images/linkedin.png') }}" alt="LinkedIn"></a>
-                <a href="https://www.instagram.com/venkat_40_smart?igsh=MXNiNXdqcjlkZnloag==" target="_blank"><img src="{{ url_for('static',filename='images/instagram.png') }}" alt="Twitter"></a>
-                <a href="mailto:venkat2040gr@gmail.com"><img src="{{ url_for('static',filename='images/gmail.png') }}" alt="Gmail"></a>
+                    <a href="http://github.com/grvenkat40" target="_blank"><img src="assert/images/github.png" alt="GitHub"></a>
+                    <a href="https://www.linkedin.com/in/venkatgr" target="_blank"><img src="assert/images/linkedin.png" alt="LinkedIn"></a>
+                    <a href="https://www.instagram.com/venkat_40_smart" target="_blank"><img src="assert/images/instagram.png" alt="Instagram"></a>
+                    <a href="mailto:venkat2040gr@gmail.com"><img src="assert/images/gmail.png" alt="Gmail"></a>
                 </div>
             </div>
-            <a href="{{ url_for('static',filename='assert/Venkat_resume_recent2.docx') }}" download="Venkat_CV.pdf" class="resume" title="Resume">📥My Resume</a>
+            <a href="assert/Venkat_resume_recent2.docx" download="Venkat_CV.pdf" class="resume" title="Resume">📥My Resume</a>
         </div>
         <!-- About -->
     </section>
@@ -196,7 +196,7 @@
 
         <!-- Project 1 -->
         <div class="project-card">
-            <img src="{{ url_for('static',filename='images/venkat_portfolio.png') }}" alt="Venkat Portfolio" class="project-image">
+            <img src="assert/images/venkat_portfolio.png" alt="Venkat Portfolio" class="project-image">
             <div class="project-overlay">
                 <h3>Personal Portfolio</h3>
                 <p>A dynamic and interactive personal portfolio.</p>
@@ -214,7 +214,7 @@
 
         <!-- Project 2 -->
         <div class="project-card">
-            <img src="{{ url_for('static',filename='images/ai-retail-analysis.png') }}" alt="AI Retail Analysis" class="project-image">
+            <img src="assert/images/ai-retail-analysis.png" alt="AI Retail Analysis" class="project-image">
             <div class="project-overlay">
                 <h3>AI_Retail_analysis</h3>
                 <p>It explores the impact and adoption of AI technologies in the retail industry, with a focus on customer demographics, preferences, payment methods, and AI-enabled tools.</p>
@@ -232,7 +232,7 @@
 
         <!-- Project 3 -->
         <div class="project-card">
-            <img src="../static/images/hematovision.png" alt="DataPulse Screenshot" class="project-image">
+            <img src="assert/images/hematovision.png" alt="DataPulse Screenshot" class="project-image">
             <div class="project-overlay">
                 <h3>Hematovision</h3>
                 <p>Predict the WBC belongs to which class of division and display the Confidence of a model in percentage.</p>
@@ -251,7 +251,7 @@
 
         <!-- Project 4 -->
         <div class="project-card">
-            <img src="../static/images/BlogMine_Thumbnail.png" alt="BookHive Screenshot" class="project-image">
+            <img src="assert/images/BlogMine_Thumbnail.png" alt="BookHive Screenshot" class="project-image">
             <div class="project-overlay">
                 <h3>Blogsmine</h3>
                 <p>BlogsMine is a simple blogging platform where users can create, upload, and view blogs with images in a clean, responsive layout. ✅</p>
@@ -379,23 +379,21 @@
 
 
 <section id="Contact">
-    <h2>Send a Message</h2>
+    <h2 style="text-align: center;color: #ff5e00ff;text-shadow:0 0 5px #ff5e00ff;">Send a Message</h2><br/>
 
     <form id="contact-form" action="https://formspree.io/f/mgvngjev" method="POST">
-        <label>
-        Your Name:
+
+        <label for="name">Your Name:</label>
         <input type="text" name="name" required>
-        </label>
+        
 
-        <label>
-        Your Email:
+        <label for="email">Your Email:</label>
         <input type="email" name="email" required>
-        </label>
+        
 
-        <label>
-        Your Message:
+        <label for="message">Your Message:</label>
         <textarea name="message" required></textarea>
-        </label>
+        
 
         <button type="submit">Send</button>
     </form>
@@ -416,7 +414,7 @@
             <p>Data Science & Software Engineering and Development</p>
             <br>
             <picture>
-                <img src="../static/images/venkat_title.png" alt="Blog Thumbnail" id='venkat_logo'>
+                <img src="assert/images/venkat_title.png" alt="Blog Thumbnail" id='venkat_logo'>
             </picture>
 
         </div>
@@ -432,10 +430,10 @@
         </div>
         <div class="footer-right">
             <div class="social-icons">
-                <a href="http://github.com/grvenkat40" target="_blank"><img src="{{ url_for('static',filename='images/github.png') }}" alt="GitHub"></a>
-                <a href="https://www.linkedin.com/in/venkatgr" target="_blank"><img src="{{ url_for('static',filename='images/linkedin.png') }}" alt="LinkedIn"></a>
-                <a href="https://www.instagram.com/venkat_40_smart?igsh=MXNiNXdqcjlkZnloag==" target="_blank"><img src="{{ url_for('static',filename='images/instagram.png') }}" alt="Twitter"></a>
-                <a href="mailto:venkat2040gr@gmail.com"><img src="{{ url_for('static',filename='images/gmail.png') }}" alt="Gmail"></a>
+                <a href="http://github.com/grvenkat40" target="_blank"><img src="assert/images/github.png" alt="GitHub"></a>
+                <a href="https://www.linkedin.com/in/venkatgr" target="_blank"><img src="assert/images/linkedin.png" alt="LinkedIn"></a>
+                <a href="https://www.instagram.com/venkat_40_smart?igsh=MXNiNXdqcjlkZnloag==" target="_blank"><img src="assert/images/instagram.png" alt="Twitter"></a>
+                <a href="mailto:venkat2040gr@gmail.com"><img src="assert/images/gmail.png" alt="Gmail"></a>
             </div><br>
             <div id="contact_wayss">
                 <div id="connect-way">
