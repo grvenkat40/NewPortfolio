@@ -103,39 +103,28 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error('Error fetching data:', error));
 });
 
-// Contact Form Submission (Send data to Flask backend)
-// const contactForm = document.getElementById('contact-form');
+const form = document.getElementById('contact-form');
+  const successMessage = document.getElementById('success-message');
 
-// contactForm.addEventListener('submit', (e) => {
-//     e.preventDefault();
-//     const name = document.getElementById('name').value;
-//     const email = document.getElementById('email').value;
-//     const message = document.getElementById('message').value;
+  form.addEventListener('submit', async function(event) {
+    event.preventDefault(); // prevent default redirect
 
-//     if (name && email && message) {
-//         // Send data to Flask backend
-//         fetch('/submit', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify({ name, email, message })
-//         })
-//         .then(response => response.json())
-//         .then(data => {
-//             alert(data.message);
-//             contactForm.reset();
-//         })
-//         .catch(error => console.error('Error submitting form:', error));
-//     } else {
-//         alert('Please fill out all fields.');
-//     }
-// });
-// fetch("http://127.0.0.1:5000/send_message",{
-//     method:"POST",
-//     headers:{"Contednt-Type":"application/json"},body:JSON.stringify({name,email,message})
-// })
-// {/* <script> */}
+    const formData = new FormData(form);
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      successMessage.style.display = 'block';
+      form.reset();
+    } else {
+      alert("Oops! Something went wrong.");
+    }
+  });
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
 
