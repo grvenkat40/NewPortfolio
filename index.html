@@ -3349,56 +3349,76 @@ html {
         position: fixed;
         bottom: 30px;
         right: 30px;
-        /* background: linear-gradient(135deg, #00d4ff, #0099cc); */
-        background: url('../NewPortfolio/images/to-the-top.png');
-        background-repeat: no-repeat;
-        background-size: auto;
-        color: white;
+        font-size: 34px;
+        text-shadow: 0 0 10px #aa23c5;
+        width: 55px;
+        height: 55px;
+background: linear-gradient(135deg, #030303, #000000),
+            url('../NewPortfolio/images/to-the-top.png') center/60% no-repeat;
+
         border: none;
-        border-radius: 50px;
-        padding: 12px 20px;
-        font-size: 16px;
-        font-weight: 600;
+        border-radius: 50%;
         cursor: pointer;
         box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
         transition: all 0.3s ease;
         opacity: 0;
         visibility: hidden;
         z-index: 1000;
+        overflow: hidden;
         }
 
-        /* Show button when scrolled down (toggle via JS) */
+        /* Show button on scroll */
         #back-to-top.show {
         opacity: 1;
         visibility: visible;
         }
 
-        /* Hover animation */
+        /* Hover effects */
         #back-to-top:hover {
         transform: translateY(-3px);
-        background: linear-gradient(135deg, #00e1ff, #007acc);
+        background: url('../NewPortfolio/images/to-the-top.png') center/60% no-repeat,
+                    linear-gradient(135deg, #00e1ff, #007acc);
         box-shadow: 0 8px 20px rgba(0, 212, 255, 0.6);
-        color: #0f0c29;
         }
 
-        /* Responsive adjustments */
+        /* Shine sweep effect */
+        #back-to-top::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        border-radius: 50%;
+        transition: left 0.5s ease;
+        }
+
+        #back-to-top:hover::before {
+        left: 100%;
+        }
+
+        /* Responsive scaling */
         @media (max-width: 768px) {
         #back-to-top {
+            width: 45px;
+            height: 45px;
             bottom: 20px;
             right: 20px;
-            padding: 10px 16px;
-            font-size: 14px;
+            background-size: 65%;
         }
         }
 
         @media (max-width: 480px) {
         #back-to-top {
+            width: 40px;
+            height: 40px;
             bottom: 15px;
             right: 15px;
-            padding: 8px 14px;
-            font-size: 13px;
+            background-size: 70%;
         }
         }
+
 
 
     </style>
@@ -3845,7 +3865,7 @@ html {
         </div>
 </footer>
 
-<button id="back-to-top" title="Go to top">Top</button>
+<button id="back-to-top" title="Go to top">🔝</button>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
