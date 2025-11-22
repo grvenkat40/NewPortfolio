@@ -360,7 +360,6 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 15px;
     max-width: 600px;
 }
 
@@ -375,6 +374,8 @@ nav {
     display: block;
     color: rgb(10, 10, 59);
     line-height: 1;
+    margin-bottom: 15px;
+
 }
 
 .landing_details h3 {
@@ -382,12 +383,15 @@ nav {
     color: #ff7b00;
     font-size: 25px;
     margin: 0;
+    margin-bottom: 15px;
+
 }
 
 .landing_details > p {
     color: rgb(117, 109, 109);
     font-size: 19px;
     margin: 0;
+    margin-bottom: 15px;
 }
 
 .footer-right {
