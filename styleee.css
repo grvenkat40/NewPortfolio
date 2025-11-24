@@ -1224,7 +1224,7 @@ nav {
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
+    gap: 15px;
     position: relative;
     z-index: 1;
     animation: fadeInUp 1s ease-out;
@@ -1243,7 +1243,7 @@ nav {
 
 /* Skills Container */
 .skills-container {
-    padding: 35px;
+    padding: 20px;
     border-radius: 20px;
     border: 1px solid rgba(0, 71, 85, 0.2);
     backdrop-filter: blur(10px);
@@ -1284,8 +1284,8 @@ nav {
 }
 
 .skills-header .icon {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 3   5px;
     transition: transform 0.3s ease;
 }
 
@@ -1297,7 +1297,7 @@ nav {
 }
 
 .skills-header h3 {
-    font-size: 26px;
+    font-size: 20px;
     font-weight: 600;
     color: #090841;
     margin: 0;
