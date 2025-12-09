@@ -215,7 +215,27 @@ nav {
     transition: all 0.3s ease;
     transform: translateX(-50%);
 }
-
+.nav-links li a.active::after {
+    content: "";
+    position: absolute;
+    color: #00d4ff;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgb(36, 225, 231),
+        transparent
+    );
+    transform: scaleX(1);
+    transition: transform 0.25s ease;
+    transform-origin: left; 
+}
+.nav-links li a::after {
+    transform: scaleX(0);
+}
 .nav-links li a:hover {
     color: #00d4ff;
     transform: translateY(-2px);
@@ -3286,8 +3306,13 @@ opacity: 0;
 visibility: hidden;
 z-index: 1000;
 overflow: hidden;
+animation: floty 2s ease-in-out infinite;
 }
-
+@keyframes floty {
+    0% {transform: translateY(0); }
+    50% {transform: translateY(-8px); }
+    100% {transform: translateY(0); }
+}
 /* Show button on scroll */
 #back-to-top.show {
 opacity: 1;

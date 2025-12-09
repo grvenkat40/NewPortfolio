@@ -49,6 +49,16 @@ document.querySelector('.DownloadResume').addEventListener('click',function(even
     document.body.removeChild(link);
 });
 
+nav-links.forEach(btn =>{
+    btn.addEventListener("click", () =>{
+        const currActive = document.querySelector(".nav-links li a.active");
+        if(currActive){
+            btn.classList.add("active");
+        }
+        btn.classList.add("active");
+    })
+})
+
 // Fade-In Animations on Scroll
 const sections = document.querySelectorAll('section');
 const options = {
