@@ -2066,7 +2066,8 @@ nav {
     padding: 80px 20px;
     color: #ffffff;
     position: relative;
-    overflow: hidden;
+    overflow:scroll;
+    height: 150vh;
 }
 .projects::before {
     content: '';
