@@ -960,8 +960,31 @@ nav {
     transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
+    animation: slideUp 0.6s ease forwards;
+}
+.tech_grid:nth-child(1) {
+    animation-delay: 0.1s;
 }
 
+.tech_grid:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.tech_grid:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.tech_grid:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* Slide up animation */
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 .tech_grid::before {
     content: '';
     position: absolute;
