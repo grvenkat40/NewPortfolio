@@ -2084,14 +2084,16 @@ nav {
 @media (max-width: 400px) {
     .project-card { width: 240px; }
 } 
+/* ===== PROJECTS SECTION ===== */
 .projects {
     width: 100%;
-    padding: 80px 20px;
+    padding: 80px 0;
     color: #ffffff;
     position: relative;
-    overflow:scroll;
-    height: 150vh;
+    overflow: hidden;
+    height: auto; /* removed 150vh */
 }
+
 .projects::before {
     content: '';
     position: absolute;
@@ -2101,6 +2103,7 @@ nav {
     bottom: 0;
     pointer-events: none;
 }
+
 .projects h2 {
     font-size: 30px;
     font-weight: 700;
@@ -2110,17 +2113,12 @@ nav {
     position: relative;
     z-index: 1;
     animation: fadeInDown 0.8s ease-out;
+    text-align: center;
 }
 
 @keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .projects > hr {
@@ -2133,26 +2131,105 @@ nav {
     position: relative;
     z-index: 1;
 }
+
+/* ===== HORIZONTAL SCROLL CONTAINER ===== */
 .projects-container {
-    max-width: 1200px;
+    display: flex;                        /* flex row instead of grid */
+    flex-direction: row;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 24px;
+    /* padding: 20px 5vw 40px;             side padding for first/last card peek */
+    scrollbar-width: none;
+    border-radius: 20px;
+    border-left: #000000;
+    max-width: 90%;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 35px;
-    position: relative;
-    z-index: 1;
     animation: fadeInUp 1s ease-out;
+
+    -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    rgb(0, 0, 0) 95%,
+    rgb(0, 0, 0) 10%
+    /* transparent */
+  );
+  mask-image: linear-gradient(
+    to right,
+    /* transparent, */
+    rgb(0, 0, 0) 10%,
+    rgb(0, 0, 0) 95%,
+    transparent
+  );
 }
+
+.projects-container::-webkit-scrollbar {
+    display: none;
+}
+
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
+/* ===== SCROLL BUTTONS ===== */
+.projects-wrapper {
+    position: relative;
+}
+
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 212, 255, 0.5);
+    background: rgba(15, 12, 41, 0.85);
+    color: #00d4ff;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.scroll-btn:hover {
+    background: #00d4ff;
+    color: #0f0c29;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.scroll-btn:active {
+    transform: translateY(-50%) scale(0.96);
+}
+
+.scroll-btn.disabled {
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+.scroll-btn-left  { left: 10px; }
+.scroll-btn-right { right: 10px; }
+
+/* Hide buttons on small touch screens */
+@media (max-width: 480px) {
+    .scroll-btn {
+        width: 36px;
+        height: 44px;
+        font-size: 16px;
+    }
+    .scroll-btn-left  { left: 4px; }
+    .scroll-btn-right { right: 4px; }
+}
+
+/* ===== PROJECT CARD ===== */
 .project-card {
     position: relative;
     border-radius: 20px;
@@ -2161,18 +2238,18 @@ nav {
     border: 1px solid rgba(0, 212, 255, 0.2);
     transition: all 0.4s ease;
     cursor: pointer;
-    height: 300px; 
-    width: 100%;   
-    display: block; 
+
+    /* One card at a time */
+    flex: 0 0 min(500px, 85vw);         /* fixed width, never overflows viewport */
+    height: 340px;
+    scroll-snap-align: center;
+    animation: slideIn 0.6s ease-out backwards;
 }
 
 .project-card::before {
     content: '';
     position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
     background: linear-gradient(135deg, #00d4ff, #00ffff);
     border-radius: 20px;
     opacity: 0;
@@ -2180,39 +2257,32 @@ nav {
     z-index: -1;
 }
 
-.project-card:hover::before {
-    opacity: 0.5;
-}
+.project-card:hover::before { opacity: 0.5; }
 
 .project-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 212, 255, 0.4);
 }
 
+/* ===== PROJECT IMAGE ===== */
 .project-image {
     width: 100%;
-    height: 100%; 
-    object-fit:fill;
-    object-position: center; 
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
     transition: transform 0.5s ease;
     display: block;
 }
 
 .project-card:hover .project-image {
     transform: scale(1.1);
-}
-
-.project-card:hover .project-image {
     filter: blur(3px) brightness(0.6);
-
 }
 
+/* ===== OVERLAY ===== */
 .project-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background: linear-gradient(
         to bottom,
         rgba(15, 12, 41, 0.7) 0%,
@@ -2226,56 +2296,50 @@ nav {
     opacity: 0;
     transition: opacity 0.4s ease;
 }
-.project-card:hover .project-overlay {
-    opacity: 1;
-}
 
-/* Project Title */
+.project-card:hover .project-overlay { opacity: 1; }
+
+/* ===== OVERLAY TEXT ===== */
 .project-overlay h3 {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
     color: #00d4ff;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     transform: translateY(20px);
     transition: transform 0.4s ease 0.1s;
 }
 
-.project-card:hover .project-overlay h3 {
-    transform: translateY(0);
-}
+.project-card:hover .project-overlay h3 { transform: translateY(0); }
 
 .project-overlay p {
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.6;
     color: #e0e0e0;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     transform: translateY(20px);
     transition: transform 0.4s ease 0.2s;
 }
 
-.project-card:hover .project-overlay p {
-    transform: translateY(0);
-}
+.project-card:hover .project-overlay p { transform: translateY(0); }
 
+/* ===== TECH STACK ===== */
 .tech-stack {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 8px;
+    margin-bottom: 16px;
     transform: translateY(20px);
     transition: transform 0.4s ease 0.3s;
 }
 
-.project-card:hover .tech-stack {
-    transform: translateY(0);
-}
+.project-card:hover .tech-stack { transform: translateY(0); }
 
 .tech-stack span {
-    padding: 6px 14px;
+    padding: 5px 12px;
     background: rgba(0, 212, 255, 0.15);
     border: 1px solid rgba(0, 212, 255, 0.4);
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
     color: #00d4ff;
     transition: all 0.3s ease;
@@ -2285,28 +2349,23 @@ nav {
     background: rgba(0, 212, 255, 0.3);
     transform: scale(1.05);
 }
-.project-links{
-    display: flex;
-    justify-content: space-evenly;
-    gap: 10px;
-}
+
+/* ===== PROJECT LINKS ===== */
 .project-links {
     display: flex;
-    gap: 15px;
+    gap: 12px;
     transform: translateY(20px);
     transition: transform 0.4s ease 0.4s;
 }
 
-.project-card:hover .project-links {
-    transform: translateY(0);
-}
+.project-card:hover .project-links { transform: translateY(0); }
 
 .project-links a {
     flex: 1;
-    padding: 10px 20px;
+    padding: 9px 16px;
     text-align: center;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     color: #ffffff;
     background: rgba(0, 212, 255, 0.2);
@@ -2320,16 +2379,13 @@ nav {
 .project-links a::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: -100%;
+    top: 0; left: -100%;
     width: 100%;
     height: 100%;
     transition: left 0.5s ease;
 }
 
-.project-links a:hover::before {
-    left: 100%;
-}
+.project-links a:hover::before { left: 100%; }
 
 .project-links a:hover {
     background: #00d4ff;
@@ -2338,210 +2394,119 @@ nav {
     box-shadow: 0 5px 15px rgba(0, 212, 255, 0.5);
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .projects {
-        padding: 60px 20px;
-    }
-
-    .projects h2 {
-        font-size: 42px;
-    }
-
-    .projects-container {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
-    }
-
-    .project-card {
-        height: 380px;
-    }
+/* ===== SCROLL DOTS ===== */
+.scroll-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 1.5rem;
+    padding-bottom: 1rem;
 }
 
-@media (max-width: 768px) {
-    .projects {
-        padding: 50px 15px;
-    }
-
-    .projects h2 {
-        font-size: 36px;
-    }
-
-    .projects > hr {
-        margin-bottom: 30px;
-    }
-
-    .projects-container {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 25px;
-    }
-
-    .project-card {
-        height: 360px;
-    }
-
-    .project-overlay {
-        padding: 25px;
-    }
-
-    .project-overlay h3 {
-        font-size: 22px;
-        margin-bottom: 12px;
-    }
-
-    .project-overlay p {
-        font-size: 14px;
-        margin-bottom: 18px;
-    }
-
-    .tech-stack {
-        gap: 8px;
-        margin-bottom: 18px;
-    }
-
-    .tech-stack span {
-        padding: 5px 12px;
-        font-size: 11px;
-    }
-
-    .project-links {
-        gap: 12px;
-    }
-
-    .project-links a {
-        padding: 9px 16px;
-        font-size: 13px;
-    }
+.scroll-dots span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(10, 10, 10, 0.3);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
 }
 
-@media (max-width: 600px) {
-    .projects-container {
-        grid-template-columns: 1fr;
-    }
-
-    .project-card {
-        height: 420px;
-        max-width: 500px;
-        margin: 0 auto;
-    }
-
-    /* Show overlay by default on mobile */
-    .project-overlay {
-        opacity: 0.95;
-        background: linear-gradient(
-            to bottom,
-            rgba(15, 12, 41, 0.8) 0%,
-            rgba(15, 12, 41, 0.9) 50%,
-            rgba(15, 12, 41, 0.95) 100%
-        );
-    }
-
-    .project-overlay h3,
-    .project-overlay p,
-    .tech-stack,
-    .project-links {
-        transform: translateY(0);
-    }
+.scroll-dots span.active {
+    background: #17d1f7;
+    transform: scale(1.5);
 }
 
-@media (max-width: 480px) {
-    .projects {
-        padding: 40px 10px;
-    }
-
-    .projects h2 {
-        font-size: 32px;
-        margin-bottom: 15px;
-    }
-
-    .projects > hr {
-        width: 60px;
-        height: 3px;
-        margin-bottom: 25px;
-    }
-
-    .project-card {
-        height: 400px;
-    }
-
-    .project-overlay {
-        padding: 20px;
-    }
-
-    .project-overlay h3 {
-        font-size: 20px;
-        margin-bottom: 10px;
-    }
-
-    .project-overlay p {
-        font-size: 13px;
-        margin-bottom: 15px;
-        line-height: 1.5;
-    }
-
-    .tech-stack {
-        gap: 6px;
-        margin-bottom: 15px;
-    }
-
-    .tech-stack span {
-        padding: 4px 10px;
-        font-size: 10px;
-    }
-
-    .project-links {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .project-links a {
-        padding: 10px 15px;
-        font-size: 13px;
-    }
-}
-
-@media (max-width: 360px) {
-    .projects h2 {
-        font-size: 28px;
-    }
-
-    .project-card {
-        height: 380px;
-    }
-
-    .project-overlay {
-        padding: 18px;
-    }
-
-    .project-overlay h3 {
-        font-size: 18px;
-    }
-
-    .project-overlay p {
-        font-size: 12px;
-    }
-}
-
-/* Card entrance animation */
-.project-card {
-    animation: slideIn 0.6s ease-out backwards;
+/* ===== CARD ENTRANCE ANIMATIONS ===== */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .project-card:nth-child(1) { animation-delay: 0.1s; }
 .project-card:nth-child(2) { animation-delay: 0.2s; }
 .project-card:nth-child(3) { animation-delay: 0.3s; }
 .project-card:nth-child(4) { animation-delay: 0.4s; }
+.project-card:nth-child(5) { animation-delay: 0.5s; }
+.project-card:nth-child(6) { animation-delay: 0.6s; }
+.project-card:nth-child(7) { animation-delay: 0.7s; }
 
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
+/* ===== RESPONSIVE ===== */
+
+/* Touch devices — show overlay always */
+@media (hover: none) {
+    .project-overlay {
         opacity: 1;
+        background: linear-gradient(
+            to bottom,
+            rgba(15, 12, 41, 0.75) 0%,
+            rgba(15, 12, 41, 0.88) 50%,
+            rgba(15, 12, 41, 0.96) 100%
+        );
+    }
+    .project-overlay h3,
+    .project-overlay p,
+    .tech-stack,
+    .project-links {
         transform: translateY(0);
     }
+    .project-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
 }
+
+@media (max-width: 768px) {
+    .projects { padding: 50px 0; }
+    .projects h2 { font-size: 26px; }
+    .projects > hr { margin-bottom: 28px; }
+
+    .projects-container {
+        gap: 16px;
+        padding: 16px 6vw 32px;
+    }
+
+    .project-card {
+        flex: 0 0 min(420px, 82vw);
+        height: 360px;
+    }
+
+    .project-overlay { padding: 22px; }
+    .project-overlay h3 { font-size: 19px; }
+}
+
+@media (max-width: 480px) {
+    .projects { padding: 40px 0; }
+    .projects h2 { font-size: 22px; }
+    .projects > hr { width: 60px; height: 3px; }
+
+    .projects-container {
+        gap: 12px;
+        padding: 12px 5vw 28px;
+    }
+
+    .project-card {
+        flex: 0 0 min(340px, 88vw);  /* wider on small screens */
+        height: 360px;
+    }
+
+    .project-overlay { padding: 18px; }
+    .project-overlay h3 { font-size: 17px; margin-bottom: 8px; }
+    .project-overlay p { font-size: 12px; margin-bottom: 12px; }
+    .tech-stack { gap: 6px; margin-bottom: 12px; }
+    .tech-stack span { padding: 4px 10px; font-size: 10px; }
+    .project-links { gap: 8px; }
+    .project-links a { padding: 8px 12px; font-size: 12px; }
+}
+
+@media (max-width: 360px) {
+    .project-card {
+        flex: 0 0 90vw;
+        height: 340px;
+    }
+}
+
+
 /* certificates */
 
 .certificates {

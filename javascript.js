@@ -177,3 +177,51 @@ document.getElementById("contact-form").addEventListener("submit", function(even
         document.getElementById("response-msg").innerText = "Error sending message.";
     });
 });
+
+
+// Scroll Botton
+const carousel   = document.getElementById('carousel');
+const dotsContainer = document.getElementById('projectDots');
+const btnLeft    = document.getElementById('btnLeft');
+const btnRight   = document.getElementById('btnRight');
+const cards      = carousel.querySelectorAll('.project-card');
+
+/* --- Build dots --- */
+cards.forEach((_, i) => {
+    const dot = document.createElement('span');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => {
+        cards[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    });
+    dotsContainer.appendChild(dot);
+});
+
+const dots = dotsContainer.querySelectorAll('span');
+
+/* --- Active dot + button state on scroll --- */
+function updateUI() {
+    const cardWidth = cards[0].offsetWidth + 16;
+    const idx = Math.round(carousel.scrollLeft / cardWidth);
+
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    btnLeft.classList.toggle('disabled',  idx === 0);
+    btnRight.classList.toggle('disabled', idx === cards.length - 1);
+}
+
+carousel.addEventListener('scroll', updateUI, { passive: true });
+
+/* --- Button clicks --- */
+function getCardWidth() {
+    return cards[0].offsetWidth + 16; // card width + gap
+}
+
+btnLeft.addEventListener('click', () => {
+    carousel.scrollBy({ left: -getCardWidth(), behavior: 'smooth' });
+});
+
+btnRight.addEventListener('click', () => {
+    carousel.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
+});
+
+/* --- Init --- */
+updateUI();
