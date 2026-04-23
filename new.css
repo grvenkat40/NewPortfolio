@@ -173,7 +173,6 @@ html {
     transition: all 0.2s ease-in-out;
 }
 .intro-box a:hover{
-    padding: 8px 16px;
     background: rgb(127, 33, 189);
     color: rgb(255, 255, 255);
     border-radius: 3px;

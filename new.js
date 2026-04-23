@@ -167,6 +167,7 @@ document.querySelectorAll(
   '.exp-heading, .exp-underline, .exp-sub, .timeline, .exp-card'
 ).forEach(el => io.observe(el));
 
+
 const logo = document.getElementById('venkat_logo');
 
 logo.addEventListener('mousemove', (e) => {
