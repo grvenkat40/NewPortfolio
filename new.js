@@ -1,3 +1,22 @@
+function AboutSecOverlay(){
+  const overLayAbout = document.getElementById("AboutPageOverlay");
+  overLayAbout.style.display = "flex";
+}
+
+function CloseOverlay(){
+  const overLayAbout = document.getElementById("AboutPageOverlay");
+  overLayAbout.style.display = "none";
+}
+
+window.addEventListener("click", (e) =>{
+  const overlay = document.getElementById("AboutPageOverlay");
+  const content = document.getElementById("aboutPageContent");
+  if(e.target == overlay){
+    CloseOverlay();
+  }
+});
+
+
 const cursor = document.querySelector('.cursor');
 
 document.addEventListener('mousemove', (e) => {

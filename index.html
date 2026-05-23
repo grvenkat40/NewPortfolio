@@ -9,12 +9,114 @@
   <link rel="stylesheet" href="new.css">
 </head>
 <body>
+    <div class="AboutPage-overlay" id="AboutPageOverlay">
+        <div class="aboutPageContent" id="aboutPageContent">
+            <div class="topRow">
+                <h2>Hey, I’m Venkat 👋</h2>
+                <a onclick="CloseOverlay()" id="AboutOverlayClose">&times</a>
+            </div><hr>
+            <div class="about-page-content">
+                <div class="about-section-profile-section">
+                    <div id="NameAndStack">
+                        <p class="profile-title">Full Stack Python Developer & Data Engineer</p>
+                    </div>
+                    <div class="profile-photo-container">
+                        <img src="images/V.jpg" alt="Profile Photo" class="profile-photo">
+                        <img src="images/GraducationImage.jpg" alt="">
+                        <img src="images/StylishVenkat.jpg" alt="">
+                    </div>
+                    
+                </div>
+ 
+                <div class="about-section">
+                    <div class="section-title">Introduction</div>
+                    <p class="about-text">
+                        I’m a passionate developer focused on building scalable and impactful software solutions. My core interests lie in <span class="highlight">Python development, Data Engineering, SQL, and modern Web Technologies.</span> I enjoy transforming raw data into meaningful insights and creating applications that solve real-world problems.
+                    </p>
+                    <p class="about-text">
+                        Currently, <span class="highlight">I’m strengthening my skills in React.js, backend development, and data-driven systems</span> while building practical projects that showcase both problem-solving and engineering ability. I actively work on projects involving APIs, data pipelines, dashboards, and full-stack development to gain industry-level experience.
+                    </p>
+                </div>
+ 
+                <div class="about-section">
+                    <div class="section-title">Education</div>
+                    <div class="education-item">
+                        <h4 class="education-degree">Bachelor of Technology in Computer Science And Information Technology</h4>
+                        <p class="education-university">Siddharth Institute Of Engineering & Technology</p>
+                        <p class="education-year">2022 - 2026</p>
+                        <p class="education-year"><strong>CGPA : 9.04</strong></p>
+                    </div>
+                    <div class="education-item">
+                        <h4 class="education-degree">Higher Secondary (Intermediate)</h4>
+                        <p class="education-university">Sri Sai Jyothi Junior College</p>
+                        <p class="education-year">2020 - 2022</p>
+                        <p class="education-year"><strong >Percentage : 77.8%</strong></p>
+                    </div>
+                </div>
+ 
+                <div class="about-section">
+                    <div class="section-title">Hobbies & Interests</div>
+
+                    <div class="hobbies-grid">
+
+                        <div class="hobby-item">
+                            <span class="hobby-icon">♟</span>
+                            <span class="hobby-name">Chess</span>
+                        </div>
+
+                        <div class="hobby-item">
+                            <span class="hobby-icon">💪</span>
+                            <span class="hobby-name">Workout</span>
+                        </div>
+
+                        <div class="hobby-item">
+                            <span class="hobby-icon">💻</span>
+                            <span class="hobby-name">Coding</span>
+                        </div>
+
+                        <div class="hobby-item">
+                            <span class="hobby-icon">🏃‍♂️</span>
+                            <span class="hobby-name">Running</span>
+                        </div>
+
+                        <div class="hobby-item">
+                            <span class="hobby-icon">🚀</span>
+                            <span class="hobby-name">Building Projects</span>
+                        </div>
+
+                        <div class="hobby-item">
+                            <span class="hobby-icon">📚</span>
+                            <span class="hobby-name">Learning Tech</span>
+                        </div>
+
+                    </div>
+                </div>
+ 
+                <div class="about-section">
+                    <div class="section-title">Skills</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">UI/UX</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Django</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Web Design</span>
+                        <span class="skill-tag">PySpark</span>
+                        <span class="skill-tag">Data Analytics</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Machine Learnign</span>
+                        <span class="skill-tag">Database Design</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <header class="header">
         <div class="VenkatHeader" id="VenkatHeader">
             <h1 id="NAME">Venkat</h1>
             <div id="more">
                 <p>No Tree reaches Heaven unless it's root reach down to Hell. !</p>
-                <a href="#" id="aboutMe">About</a>
+                <a onclick="AboutSecOverlay()" id="aboutMe">About</a>
             </div>
         </div>
     </header>
@@ -347,6 +449,8 @@ flexibility and reducing manual pipeline configuration efforts..</p>
         <h1>HIRE ME!</h1>
     </section>
     <button class="fas fa-arrow-up" id="scrollTopBtn"></button>
+
+    
     <footer>
         <div class="footer-container">
             <div class="footer-left">
